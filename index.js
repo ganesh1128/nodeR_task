@@ -4,6 +4,7 @@ const cors = require("cors");
 const mongodb = require("mongodb");
 const mongoClient = mongodb.MongoClient;
 const url = "mongodb://localhost:27017";
+const PORT = process.env.PORT || 3000
 
 app.use(
   cors({
@@ -109,4 +110,8 @@ app.delete("/delete-task/:id", async function (req, res) {
     }
 });
 
-app.listen(3000, function () {});
+app.listen(PORT, function () {});
+console.log(`listeniong to ${PORT}`);
+
+
+
