@@ -33,6 +33,7 @@ function authenticate(req,res,next){
         })
        }else{
          console.log(decoded)
+         req.userid = decoded.id;
          next()
        }
      });
@@ -134,7 +135,7 @@ app.get("/list-all-todo",[authenticate], async function (req, res) {
     let db = client.db("todo_app");
 
     //select the collection and perform the action
-    let data = await db.collection("tasks").find({}).toArray();
+    let data = await db.collection("tasks").find({userid : req.userid}).toArray();
 
     //close the connection
     client.close();
@@ -155,6 +156,7 @@ app.post("/create-task", [authenticate],async function (req, res) {
     let db = client.db("todo_app");
 
     //select the collection and perform the action
+    req.body.userid=req.userid;
     let data = await db.collection("tasks").insertOne(req.body);
 
     //close the connection
