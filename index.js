@@ -53,7 +53,7 @@ function authenticate(req,res,next){
 }
 
 
-app.post("/register",async function(req,res){
+app.post("/register*",async function(req,res){
 try {
     //Connect the database
     let client = await mongoClient.connect(url);
