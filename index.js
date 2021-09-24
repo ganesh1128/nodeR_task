@@ -53,7 +53,7 @@ function authenticate(req,res,next){
 }
 
 
-app.post("/register*",async function(req,res){
+app.post("/register",async function(req,res){
 try {
     //Connect the database
     let client = await mongoClient.connect(url);
@@ -107,13 +107,13 @@ app.post("/login", async function(req,res){
         token
       })
     }else{
-      res.status(404).json({
+      res.status(200).json({
         message :  "username/password not found"
       })
     }
     //if both are correct allow them
     }else{
-      res.status(404).json({
+      res.status(200).json({
         message : "username/password not found"
       })
     }
